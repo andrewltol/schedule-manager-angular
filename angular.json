@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "tempus-site"
+  "defaultProject": "tempus-site",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

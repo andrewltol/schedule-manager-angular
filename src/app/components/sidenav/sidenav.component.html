@@ -1,0 +1,8 @@
+<div class="sidenav-wrapper">
+  <div class="nav-list" *ngFor="let menuItem of menuItems">
+    <a mat-raised-button [class.mat-primary]="isActiveLink(menuItem)" [routerLink]="[menuItem.routeLink]">
+      <!-- <i class="material-icons">{{menuItem.icon}}</i> -->
+      {{menuItem.displayName}}
+    </a>
+  </div>
+</div>

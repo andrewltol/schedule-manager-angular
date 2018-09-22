@@ -1,0 +1,32 @@
+.add-icon > button {
+  float: right;
+  font-size: 40px;
+  margin: 15px;
+}
+
+table {
+  padding: 0 10px;
+  width: 100%;
+
+  .active-column {
+    text-align: center;
+    width: 80px;
+
+    mat-checkbox {
+      cursor: default;
+    }
+  }
+
+  .delete-column, .edit-column {
+    padding: 5px;
+    width: 80px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .focused {
+    background-color: #DDDDDD;
+  }
+}

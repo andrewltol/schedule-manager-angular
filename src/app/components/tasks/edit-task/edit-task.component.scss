@@ -1,0 +1,14 @@
+.action-buttons {
+  float: right;
+}
+
+.name-field, .effective-date-fields {
+  display: table;
+  table-layout: fixed;    /* For cells of equal size */
+  width: 100%;
+
+  mat-form-field {
+    display: table-cell;
+    padding-right: 15px;
+  }
+}

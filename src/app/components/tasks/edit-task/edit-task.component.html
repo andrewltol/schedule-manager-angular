@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>{{getTitle()}}</h1>
+<div mat-dialog-content>
+  <div class="name-field">
+    <mat-form-field>
+      <input matInput placeholder="Task Name" [(ngModel)]="task.taskName">
+    </mat-form-field>
+  </div>
+  <div class="effective-date-fields">
+    <mat-form-field>
+      <input #startDateInput matInput placeholder="Start Date" type="date" value="{{getTaskStartDate()}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input #termDateInput matInput placeholder="Termination Date" type="date" value="{{getTaskTerminationDate()}}">
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions class="action-buttons">
+  <button mat-button (click)="onConfirm()">Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</div>

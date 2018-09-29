@@ -41,8 +41,8 @@ export class UsersComponent implements OnInit {
 
   clickAddUser() {
     const dialog = this.matDialog.open(EditUserComponent, {
-      width: '800px',
-      data: {}
+      data: {},
+      width: '800px'      
     });
 
     dialog.afterClosed().subscribe((result: EditUserResultData) => {
@@ -60,25 +60,25 @@ export class UsersComponent implements OnInit {
 
   clickDeleteUser(user: User) {
     this.matDialog.open(ConfirmDialogComponent, {
-      width: '250px',
       data: <ConfirmDialogData>{
         confirmAction: () => {
           this.deleteUser(user);
         },
         confirmText: 'Delete',
-        rejectText: 'Cancel',
         prompt: `Are you sure you want to delete user ${user.fullName}?`,
+        rejectText: 'Cancel',
         title: 'Delete User'
-      }
+      },
+      width: '250px'
     });
   }
 
   clickEditUser(user: User) {
     const dialog = this.matDialog.open(EditUserComponent, {
-      width: '800px',
       data: <EditUserComponentData>{
         editUser: Object.create(user)   // send copy so we can control save/cancel
-      }
+      },
+      width: '800px'      
     });
 
     dialog.afterClosed().subscribe((result: EditUserResultData) => {

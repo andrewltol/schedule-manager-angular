@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { User } from 'src/app/models/user';
-import { DateService } from 'src/app/services/date.service';
+import { DateService, DISPLAY_DATE_FORMAT } from 'src/app/services/date.service';
 
 export interface EditUserComponentData {
   editUser: User
@@ -14,14 +14,12 @@ export interface EditUserResultData {
   shouldSave: boolean
 }
 
-const displayDateFormat = 'y-MM-dd';
-
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent {
   addingUser: boolean;
   user: User;
 
@@ -32,17 +30,21 @@ export class EditUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: EditUserComponentData,
     private datePipe: DatePipe,
     private dateService: DateService) {
-      if (data.editUser) {
-        this.user = data.editUser;
-        this.addingUser = false;
-      }
-      else {
-        this.user = new User();
-        this.addingUser = true;
-      }
+    if (data.editUser) {
+      this.user = data.editUser;
+      this.addingUser = false;
     }
+    else {
+      this.user = new User();
+      this.addingUser = true;
+    }
+  }
 
-  ngOnInit() {
+  createResultData(shouldSave: boolean): EditUserResultData {
+    return {
+      editedUser: this.user,
+      shouldSave
+    }
   }
 
   getTitle(): string {
@@ -50,13 +52,17 @@ export class EditUserComponent implements OnInit {
   }
 
   getUserStartDate(): string {
-    return this.datePipe.transform(this.user.startDate, displayDateFormat);
+    return this.datePipe.transform(this.user.startDate, DISPLAY_DATE_FORMAT);
   }
 
   getUserTerminationDate(): string {
     if (this.user.terminationDate) {
-      return this.datePipe.transform(this.user.terminationDate, displayDateFormat);
+      return this.datePipe.transform(this.user.terminationDate, DISPLAY_DATE_FORMAT);
     }
+  }
+
+  onCancel() {
+    this.dialogRef.close(this.createResultData(false));
   }
 
   onConfirm() {
@@ -67,16 +73,5 @@ export class EditUserComponent implements OnInit {
     }
 
     this.dialogRef.close(this.createResultData(true));
-  }
-
-  onCancel() {
-    this.dialogRef.close(this.createResultData(false));
-  }
-
-  createResultData(shouldSave: boolean): EditUserResultData {
-    return {
-      editedUser: this.user,
-      shouldSave
-    }
   }
 }

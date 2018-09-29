@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+export const DISPLAY_DATE_FORMAT = 'y-MM-dd';
+
 @Injectable()
 export class DateService {
 

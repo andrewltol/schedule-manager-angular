@@ -9,6 +9,7 @@ import { MaterialModules } from './material-modules.module';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.component';
 import { SidenavComponent } from 'src/app/components/sidenav/sidenav.component';
+import { EditTaskComponent } from 'src/app/components/tasks/edit-task/edit-task.component';
 import { TasksComponent } from 'src/app/components/tasks/tasks.component';
 import { EditUserComponent } from 'src/app/components/users/edit-user/edit-user.component';
 import { UsersComponent } from 'src/app/components/users/users.component';
@@ -20,6 +21,7 @@ import { UserService } from 'src/app/services/user.service';
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
+    EditTaskComponent,
     EditUserComponent,
     MaterialLayoutComponent,
     SchedulerComponent,
@@ -46,6 +48,7 @@ import { UserService } from 'src/app/services/user.service';
   ],
   entryComponents: [
     ConfirmDialogComponent,
+    EditTaskComponent,
     EditUserComponent
   ]
 })

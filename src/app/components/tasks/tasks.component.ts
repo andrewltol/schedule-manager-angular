@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent, ConfirmDialogData } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { Task } from 'src/app/models/task';
 import { TaskService } from 'src/app/services/task.service';
+import { EditTaskComponent, EditTaskData } from './edit-task/edit-task.component';
 
 export interface TaskRowData {
   isHovered: boolean;
@@ -37,25 +38,33 @@ export class TasksComponent implements OnInit {
   }
 
   clickAddTask() {
-
+    this.matDialog.open(EditTaskComponent, {
+      data: {},
+      width: '800px'
+    });
   }
 
   clickEditTask(task: Task) {
-
+    this.matDialog.open(EditTaskComponent, {
+      data: <EditTaskData>{
+        editTask: Object.create(task)   // send copy so we can control save/cancel
+      },
+      width: '800px'
+    });
   }
 
   clickDeleteTask(task: Task) {
     this.matDialog.open(ConfirmDialogComponent, {
-      width: '250px',
       data: <ConfirmDialogData>{
         confirmAction: () => {
           this.deleteTask(task);
         },
         confirmText: 'Delete',
-        rejectText: 'Cancel',
         prompt: `Are you sure you want to delete Task ${task.taskName}?`,
+        rejectText: 'Cancel',
         title: 'Delete Task'
-      }
+      },
+      width: '250px'      
     });
   }
   

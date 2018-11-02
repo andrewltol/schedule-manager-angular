@@ -52,7 +52,7 @@ export class EditEmployeeComponent {
   }
 
   getEmployeeStartDate(): string {
-    return this.datePipe.transform(this.employee.startDate, DISPLAY_DATE_FORMAT);
+    return this.datePipe.transform(this.employee.hireDate, DISPLAY_DATE_FORMAT);
   }
 
   getEmployeeTerminationDate(): string {
@@ -66,7 +66,7 @@ export class EditEmployeeComponent {
   }
 
   onConfirm() {
-    this.employee.startDate = this.dateService.parseDateFromHTMLValue(this.startDateInput.nativeElement.value);
+    this.employee.hireDate = this.dateService.parseDateFromHTMLValue(this.startDateInput.nativeElement.value);
 
     if (this.termDateInput.nativeElement.value) {
       this.employee.terminationDate = this.dateService.parseDateFromHTMLValue(this.termDateInput.nativeElement.value);

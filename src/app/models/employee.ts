@@ -3,7 +3,7 @@ export class Employee {
   firstName: string;
   lastName: string;
   notes?: string;
-  startDate: Date;
+  hireDate: Date;
   terminationDate?: Date;
 
   get fullName(): string {

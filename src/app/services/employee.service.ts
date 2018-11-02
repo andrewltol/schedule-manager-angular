@@ -18,28 +18,28 @@ export class EmployeeService {
     employee.id = 1;
     employee.firstName = 'Fred';
     employee.lastName = 'Flintstone';
-    employee.startDate = new Date(2001, 7, 9);
+    employee.hireDate = new Date(2001, 7, 9);
     this.employees.push(employee);
 
     employee = new Employee();
     employee.id = 2;
     employee.firstName = 'Wilma';
     employee.lastName = 'Flintstone';
-    employee.startDate = new Date(2005, 1, 19);
+    employee.hireDate = new Date(2005, 1, 19);
     this.employees.push(employee);
 
     employee = new Employee();
     employee.id = 3;
     employee.firstName = 'Barney';
     employee.lastName = 'Rubble';
-    employee.startDate = new Date(2003, 6, 11);
+    employee.hireDate = new Date(2003, 6, 11);
     this.employees.push(employee);
 
     employee = new Employee();
     employee.id = 4;
     employee.firstName = 'Betty';
     employee.lastName = 'Rubble';
-    employee.startDate = new Date(2015, 11, 31);
+    employee.hireDate = new Date(2015, 11, 31);
     this.employees.push(employee);
   }
 

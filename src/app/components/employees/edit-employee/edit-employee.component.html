@@ -2,18 +2,18 @@
 <div mat-dialog-content>
   <div class="name-fields">
     <mat-form-field>
-      <input matInput placeholder="First Name" [(ngModel)]="user.firstName">
+      <input matInput placeholder="First Name" [(ngModel)]="employee.firstName">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Last Name" [(ngModel)]="user.lastName">
+      <input matInput placeholder="Last Name" [(ngModel)]="employee.lastName">
     </mat-form-field>
   </div>
   <div class="effective-date-fields">
     <mat-form-field>
-      <input #startDateInput matInput placeholder="Start Date" type="date" value="{{getUserStartDate()}}">
+      <input #startDateInput matInput placeholder="Start Date" type="date" value="{{getEmployeeStartDate()}}">
     </mat-form-field>
     <mat-form-field>
-      <input #termDateInput matInput placeholder="Termination Date" type="date" value="{{getUserTerminationDate()}}">
+      <input #termDateInput matInput placeholder="Termination Date" type="date" value="{{getEmployeeTerminationDate()}}">
     </mat-form-field>
   </div>
 </div>

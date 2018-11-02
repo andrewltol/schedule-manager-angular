@@ -5,7 +5,7 @@ import { MaterialLayoutComponent } from './material-layout.component';
 
 import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.component';
 import { TasksComponent } from 'src/app/components/tasks/tasks.component';
-import { UsersComponent } from 'src/app/components/users/users.component';
+import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 
 export const MaterialLayoutRoutes: Routes = [
   {
@@ -17,8 +17,8 @@ export const MaterialLayoutRoutes: Routes = [
         component: SchedulerComponent
       },
       {
-        path: 'users',
-        component: UsersComponent
+        path: 'employees',
+        component: EmployeesComponent
       },
       {
         path: 'tasks',

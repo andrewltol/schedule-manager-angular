@@ -11,23 +11,23 @@ import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.compo
 import { SidenavComponent } from 'src/app/components/sidenav/sidenav.component';
 import { EditTaskComponent } from 'src/app/components/tasks/edit-task/edit-task.component';
 import { TasksComponent } from 'src/app/components/tasks/tasks.component';
-import { EditUserComponent } from 'src/app/components/users/edit-user/edit-user.component';
-import { UsersComponent } from 'src/app/components/users/users.component';
+import { EditEmployeeComponent } from 'src/app/components/employees/edit-employee/edit-employee.component';
+import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 
 import { DateService } from 'src/app/services/date.service';
 import { TaskService } from 'src/app/services/task.service';
-import { UserService } from 'src/app/services/user.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     EditTaskComponent,
-    EditUserComponent,
+    EditEmployeeComponent,
     MaterialLayoutComponent,
     SchedulerComponent,
     SidenavComponent,
     TasksComponent,
-    UsersComponent
+    EmployeesComponent
   ],
   imports: [
     CommonModule,
@@ -44,12 +44,12 @@ import { UserService } from 'src/app/services/user.service';
     DatePipe,
     DateService,
     TaskService,
-    UserService
+    EmployeeService
   ],
   entryComponents: [
     ConfirmDialogComponent,
     EditTaskComponent,
-    EditUserComponent
+    EditEmployeeComponent
   ]
 })
 

@@ -3,21 +3,21 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 
-import { UsersComponent } from './users.component';
+import { EmployeesComponent } from './employees.component';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { MaterialModules } from 'src/app/material-layout/material-modules.module';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Employee } from 'src/app/models/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+describe('EmployeesComponent', () => {
+  let component: EmployeesComponent;
+  let fixture: ComponentFixture<EmployeesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         ConfirmDialogComponent, 
-        UsersComponent
+        EmployeesComponent
       ],
       imports: [
         FormsModule,
@@ -25,21 +25,21 @@ describe('UsersComponent', () => {
       ],
       providers: [
         MatDialog,
-        UserService
+        EmployeeService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(EmployeesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should open edit window for user modification', inject([MatDialog], (matDialog: MatDialog) => {
+  it('should open edit window for employee modification', inject([MatDialog], (matDialog: MatDialog) => {
     // Arrange
-    const user = <User>{
+    const employee = <Employee>{
       id: 1
     }
     spyOn(matDialog, 'open').and.returnValue(<MatDialogRef<ConfirmDialogComponent>>{
@@ -49,15 +49,15 @@ describe('UsersComponent', () => {
     });
 
     // Act
-    component.clickEditUser(user);
+    component.clickEditEmployee(employee);
 
     // Assert
     expect(matDialog.open).toHaveBeenCalled();
   }));
 
-  it('should prompt user for deletion', inject([MatDialog], (matDialog: MatDialog) => {
+  it('should prompt employee for deletion', inject([MatDialog], (matDialog: MatDialog) => {
     // Arrange
-    const user = <User>{
+    const employee = <Employee>{
       id: 1
     }
     spyOn(matDialog, 'open').and.returnValue(<MatDialogRef<ConfirmDialogComponent>>{
@@ -67,38 +67,38 @@ describe('UsersComponent', () => {
     });
 
     // Act
-    component.clickDeleteUser(user);
+    component.clickDeleteEmployee(employee);
 
     // Assert
     expect(matDialog.open).toHaveBeenCalled();
   }));
 
-  it('should update display data when user is deleted', inject([UserService], (userService: UserService) => {
+  it('should update display data when employee is deleted', inject([EmployeeService], (employeeService: EmployeeService) => {
     // Arrange
-    const users = [
-      <User>{
+    const employees = [
+      <Employee>{
         id: 1
       },
-      <User>{
+      <Employee>{
         id: 2
       }
     ];
     component.rowData.data = [
       {
-        userData: users[0],
+        employeeData: employees[0],
         isHovered: false
       },
       {
-        userData: users[1],
+        employeeData: employees[1],
         isHovered: false
       }
     ];
 
     // Act
-    component.deleteUser(users[0]);
+    component.deleteEmployee(employees[0]);
     
     // Assert
     expect(component.rowData.data.length).toBe(1);
-    expect(component.rowData.data[0].userData.id).toBe(2);
+    expect(component.rowData.data[0].employeeData.id).toBe(2);
   }));
 });

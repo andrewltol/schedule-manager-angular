@@ -7,7 +7,7 @@ import { SidenavComponent } from './sidenav.component';
 
 import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.component';
 import { TasksComponent } from 'src/app/components/tasks/tasks.component';
-import { UsersComponent } from 'src/app/components/users/users.component';
+import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 import { MaterialLayoutComponent } from 'src/app/material-layout/material-layout.component';
 import { MaterialModules } from 'src/app/material-layout/material-modules.module';
 import { MaterialLayoutRoutes } from 'src/app/material-layout/material-layout.routing';
@@ -23,7 +23,7 @@ describe('SidenavComponent', () => {
         SchedulerComponent,
         SidenavComponent,
         TasksComponent,
-        UsersComponent
+        EmployeesComponent
       ],
       imports: [
         MaterialModules,

@@ -19,8 +19,8 @@ export class SidenavComponent implements OnInit {
       routeLink: '/scheduler'
     },
     {
-      displayName: 'Users',
-      routeLink: '/users'
+      displayName: 'Employees',
+      routeLink: '/employees'
     },
     {
       displayName: 'Tasks',

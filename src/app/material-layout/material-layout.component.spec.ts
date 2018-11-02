@@ -10,7 +10,7 @@ import { MaterialModules } from './material-modules.module';
 import { SchedulerComponent } from 'src/app/components/scheduler/scheduler.component';
 import { SidenavComponent } from 'src/app/components/sidenav/sidenav.component';
 import { TasksComponent } from 'src/app/components/tasks/tasks.component';
-import { UsersComponent } from 'src/app/components/users/users.component';
+import { EmployeesComponent } from 'src/app/components/employees/employees.component';
 
 describe('MaterialLayoutComponent', () => {
   let component: MaterialLayoutComponent;
@@ -23,7 +23,7 @@ describe('MaterialLayoutComponent', () => {
         SchedulerComponent,
         SidenavComponent,
         TasksComponent,
-        UsersComponent
+        EmployeesComponent
       ],
       imports: [
         FormsModule,

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 
@@ -14,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
     MatCheckboxModule,
     MatDialogModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatRippleModule,
     MatSidenavModule,
     MatTableModule
@@ -23,6 +25,7 @@ import { MatTableModule } from '@angular/material/table';
     MatCheckboxModule,
     MatDialogModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatRippleModule,
     MatSidenavModule,
     MatTableModule

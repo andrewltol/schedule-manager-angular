@@ -18,6 +18,7 @@
   </div>
 </div>
 <div mat-dialog-actions class="action-buttons">
-  <button mat-button (click)="onConfirm()">Save</button>
-  <button mat-button (click)="onCancel()">Cancel</button>
+  <mat-progress-spinner *ngIf="isSaving" mode="indeterminate" [diameter]="35"></mat-progress-spinner>
+  <button *ngIf="!isSaving" class="mat-primary" mat-raised-button (click)="onConfirm()">Save</button>
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
 </div>

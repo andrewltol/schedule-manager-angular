@@ -4,14 +4,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Employee } from 'src/app/models/employee';
 import { DateService, DISPLAY_DATE_FORMAT } from 'src/app/services/date.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 export interface EditEmployeeComponentData {
   editEmployee: Employee
 }
 
 export interface EditEmployeeResultData {
-  editedEmployee: Employee,
-  shouldSave: boolean
+  didSave: boolean
 }
 
 @Component({
@@ -22,6 +22,7 @@ export interface EditEmployeeResultData {
 export class EditEmployeeComponent {
   addingEmployee: boolean;
   employee: Employee;
+  isSaving = false;
 
   @ViewChild('startDateInput') startDateInput: ElementRef<HTMLInputElement>;
   @ViewChild('termDateInput') termDateInput: ElementRef<HTMLInputElement>;
@@ -29,21 +30,21 @@ export class EditEmployeeComponent {
   constructor(public dialogRef: MatDialogRef<EditEmployeeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: EditEmployeeComponentData,
     private datePipe: DatePipe,
-    private dateService: DateService) {
+    private dateService: DateService,
+    private employeeService: EmployeeService) {
+    this.employee = new Employee();
     if (data.editEmployee) {
-      this.employee = data.editEmployee;
+      this.employee.loadProperties(data.editEmployee);
       this.addingEmployee = false;
     }
     else {
-      this.employee = new Employee();
       this.addingEmployee = true;
     }
   }
 
-  createResultData(shouldSave: boolean): EditEmployeeResultData {
+  createResultData(didSave: boolean): EditEmployeeResultData {
     return {
-      editedEmployee: this.employee,
-      shouldSave
+      didSave: didSave
     }
   }
 
@@ -66,12 +67,32 @@ export class EditEmployeeComponent {
   }
 
   onConfirm() {
+    this.isSaving = true;
     this.employee.hireDate = this.dateService.parseDateFromHTMLValue(this.startDateInput.nativeElement.value);
 
     if (this.termDateInput.nativeElement.value) {
       this.employee.terminationDate = this.dateService.parseDateFromHTMLValue(this.termDateInput.nativeElement.value);
     }
 
-    this.dialogRef.close(this.createResultData(true));
+    if (this.addingEmployee) {
+      this.employeeService.addEmployee(this.employee).subscribe(() => {
+        this.isSaving = false;
+        this.dialogRef.close(this.createResultData(true));
+      },
+      error => {
+        this.isSaving = false;
+        console.log(error);
+      });
+    }
+    else {
+      this.employeeService.updateEmployee(this.employee).subscribe(() => {
+        this.isSaving = false;
+        this.dialogRef.close(this.createResultData(true));
+      },
+      error => {
+        this.isSaving = false;
+        console.log(error);
+      });
+    }
   }
 }

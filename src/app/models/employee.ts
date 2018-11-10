@@ -18,4 +18,12 @@ export class Employee {
       return true;
     }
   }
+
+  loadProperties(employee: Employee) {
+    for (const prop in employee) {
+      if (employee.hasOwnProperty(prop)) {
+        this[prop] = employee[prop];
+      }
+    }
+  }
 }

@@ -29,14 +29,7 @@ export class EmployeesComponent implements OnInit {
     private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.employeeService.getAllEmployees().subscribe(employees => {
-      this.rowData.data = employees.map(u => {
-        return <EmployeeRowData>{
-          isHovered: false,
-          employeeData: u
-        };
-      });
-    });
+    this.getEmployees();
   }
 
   clickAddEmployee() {
@@ -46,14 +39,8 @@ export class EmployeesComponent implements OnInit {
     });
 
     dialog.afterClosed().subscribe((result: EditEmployeeResultData) => {
-      if (result.shouldSave) {
-        // Add new employee
-        const currentData = this.rowData.data;
-        let newRow: EmployeeRowData = <EmployeeRowData>{};
-        newRow.isHovered = false;
-        newRow.employeeData = result.editedEmployee;
-        currentData.push(newRow);
-        this.rowData.data = currentData;
+      if (result.didSave) {
+        this.getEmployees();
       }
     });
   }
@@ -62,7 +49,9 @@ export class EmployeesComponent implements OnInit {
     this.matDialog.open(ConfirmDialogComponent, {
       data: <ConfirmDialogData>{
         confirmAction: () => {
-          this.deleteEmployee(employee);
+          this.employeeService.deleteEmployee(employee.id).subscribe(() => {
+            this.getEmployees();
+          });
         },
         confirmText: 'Delete',
         prompt: `Are you sure you want to delete employee ${employee.fullName}?`,
@@ -76,18 +65,15 @@ export class EmployeesComponent implements OnInit {
   clickEditEmployee(employee: Employee) {
     const dialog = this.matDialog.open(EditEmployeeComponent, {
       data: <EditEmployeeComponentData>{
-        editEmployee: Object.create(employee)   // send copy so we can control save/cancel
+        editEmployee: employee   // send copy so we can control save/cancel
       },
       width: '800px'      
     });
 
     dialog.afterClosed().subscribe((result: EditEmployeeResultData) => {
-      if (result.shouldSave) {
+      if (result.didSave) {
         // Update edited employee.
-        let updatedRow = this.rowData.data.find(data => {
-          return data.employeeData.id === result.editedEmployee.id;
-        });
-        updatedRow.employeeData = result.editedEmployee;
+        this.getEmployees();
       }
     });
   }
@@ -100,6 +86,19 @@ export class EmployeesComponent implements OnInit {
     const deleteRow = currentData.findIndex(row => row.employeeData.id === employee.id);
     currentData.splice(deleteRow, 1);
     this.rowData.data = currentData;
+  }
+
+  getEmployees() {
+    this.employeeService.getAllEmployees().subscribe(employees => {
+      this.rowData.data = employees.map(u => {
+        const employee = new Employee();
+        employee.loadProperties(u); 
+        return <EmployeeRowData>{
+          isHovered: false,
+          employeeData: employee
+        };
+      });
+    });
   }
 
   onMouseEnter(row: EmployeeRowData) {

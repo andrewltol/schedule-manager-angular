@@ -1,4 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -43,6 +44,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
   providers: [
     DatePipe,
     DateService,
+    HttpClient,
     TaskService,
     EmployeeService
   ],
